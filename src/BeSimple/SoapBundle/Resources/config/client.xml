@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
         <parameter key="besimple.soap.client.builder.class">BeSimple\SoapBundle\Soap\SoapClientBuilder</parameter>
         <parameter key="besimple.soap.classmap.class">BeSimple\SoapCommon\Classmap</parameter>
+        <parameter key="besimple.soap.client.class">BeSimple\SoapClient</parameter>
     </parameters>
 
     <services>
@@ -19,7 +20,11 @@
             <argument type="service" id="besimple.soap.cache" /> <!-- hack to load besimple cache configuration -->
         </service>
 
-        <service id="besimple.soap.client" factory-service="besimple.soap.client.builder" factory-method="build" class="%besimple.soap.client.builder.class%" abstract="true" />
+        <service id="besimple.soap.client" class="%besimple.soap.client.class%">
+            <factory service="%besimple.soap.client.builder.class%"
+                     method="build"  class="%besimple.soap.client.builder.class%"
+            />
+        </service>
 
         <service id="besimple.soap.classmap" class="%besimple.soap.classmap.class%" abstract="true" />
     </services>
