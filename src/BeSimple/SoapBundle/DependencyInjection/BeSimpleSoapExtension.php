@@ -12,15 +12,13 @@
 
 namespace BeSimple\SoapBundle\DependencyInjection;
 
-use BeSimple\SoapBundle\Soap\SoapClientBuilder;
 use BeSimple\SoapCommon\Cache;
-
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -153,14 +151,12 @@ class BeSimpleSoapExtension extends Extension
         $definition = new ChildDefinition('besimple.soap.client');
         $container->setDefinition(sprintf('besimple.soap.client.%s', $client), $definition);
 
-        if (3 === Kernel::MAJOR_VERSION) {
-            $definition->setFactory(array(
+        $definition->setFactory(
+            array(
                 new Reference(sprintf('besimple.soap.client.builder.%s', $client)),
-                'build'
-            ));
-        } else {
-            $definition->setFactory(SoapClientBuilder::class);
-        }
+                'build',
+            )
+        );
     }
 
     private function createWebServiceContext(array $config, ContainerBuilder $container)
