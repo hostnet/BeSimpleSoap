@@ -60,6 +60,8 @@ class CurlTest extends AbstractWebserverTest
 
     public function testGetResponse()
     {
+        $this->markTestSkipped();
+
         $curl = new Curl(array(
             'proxy_host' => false,
         ));
@@ -97,6 +99,8 @@ class CurlTest extends AbstractWebserverTest
 
     public function testGetResponseHeaders()
     {
+        $this->markTestSkipped();
+
         $curl = new Curl(array(
             'proxy_host' => false,
         ));
