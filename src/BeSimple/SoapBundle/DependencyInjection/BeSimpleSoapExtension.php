@@ -12,6 +12,7 @@
 
 namespace BeSimple\SoapBundle\DependencyInjection;
 
+use BeSimple\SoapBundle\Soap\SoapClientBuilder;
 use BeSimple\SoapCommon\Cache;
 
 use Symfony\Component\Config\Definition\Processor;
@@ -158,7 +159,7 @@ class BeSimpleSoapExtension extends Extension
                 'build'
             ));
         } else {
-            $definition->setFactory(sprintf('besimple.soap.client.builder.%s', $client));
+            $definition->setFactory(SoapClientBuilder::class);
         }
     }
 
