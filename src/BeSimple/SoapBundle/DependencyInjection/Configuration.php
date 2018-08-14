@@ -12,8 +12,10 @@
 
 namespace BeSimple\SoapBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\ArrayNode;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * WebServiceExtension configuration structure.
@@ -21,7 +23,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  * @author Christian Kerl <christian-kerl@web.de>
  * @author Francis Besset <francis.besset@gmail.com>
  */
-class Configuration
+class Configuration implements ConfigurationInterface
 {
     private $cacheTypes = array('none', 'disk', 'memory', 'disk_memory');
     private $proxyAuth = array('basic', 'ntlm');
@@ -29,9 +31,19 @@ class Configuration
     /**
      * Generates the configuration tree.
      *
-     * @return \Symfony\Component\Config\Definition\ArrayNode The config tree
+     * @return ArrayNode The config tree
      */
     public function getConfigTree()
+    {
+        return $this->getConfigTreeBuilder()->buildTree();
+    }
+
+    /**
+     * Generates the configuration tree builder.
+     *
+     * @return TreeBuilder The tree builder
+     */
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('be_simple_soap');
@@ -47,7 +59,7 @@ class Configuration
             ->end()
         ;
 
-        return $treeBuilder->buildTree();
+        return $treeBuilder;
     }
 
     private function addCacheSection(ArrayNodeDefinition $rootNode)
