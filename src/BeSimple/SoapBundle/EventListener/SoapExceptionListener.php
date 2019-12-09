@@ -12,16 +12,17 @@
 
 namespace BeSimple\SoapBundle\EventListener;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use Symfony\Component\HttpKernel\EventListener\ExceptionListener;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * @author Francis Besset <francis.besset@gmail.com>
  */
-class SoapExceptionListener extends ExceptionListener
+class SoapExceptionListener implements EventSubscriberInterface
 {
     /**
      * @var ContainerInterface
@@ -29,10 +30,6 @@ class SoapExceptionListener extends ExceptionListener
     protected $container;
 
     /**
-     * To avoid conflict between , the logger param is not typed:
-     *  The parent class needs and instance of `Psr\Log\LoggerInterface` from Symfony 2.2,
-     *  before logger is an instance of `Symfony\Component\HttpKernel\Log\LoggerInterface`.
-     *
      * @param ContainerInterface $container  A ContainerInterface instance
      * @param string             $controller The controller name to call
      * @param LoggerInterface    $logger     A logger instance
@@ -44,7 +41,7 @@ class SoapExceptionListener extends ExceptionListener
         $this->container = $container;
     }
 
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event)
     {
         if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
             return;
@@ -73,8 +70,6 @@ class SoapExceptionListener extends ExceptionListener
         if ($exception instanceof \SoapFault) {
             $request->query->set('_besimple_soap_fault', $exception);
         }
-
-        parent::onKernelException($event);
     }
 
     public static function getSubscribedEvents()
