@@ -30,8 +30,6 @@
             <tag name="kernel.event_subscriber" />
             <tag name="monolog.logger" channel="request" />
             <argument type="service" id="service_container" />
-            <argument>%besimple.soap.exception_listener.controller%</argument>
-            <argument type="service" id="logger" on-invalid="null" />
         </service>
 
         <service id="besimple.soap.context.rpcliteral" class="%besimple.soap.context.class%" abstract="true">

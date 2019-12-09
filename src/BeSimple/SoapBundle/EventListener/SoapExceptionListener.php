@@ -12,7 +12,6 @@
 
 namespace BeSimple\SoapBundle\EventListener;
 
-use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -31,13 +30,9 @@ class SoapExceptionListener implements EventSubscriberInterface
 
     /**
      * @param ContainerInterface $container  A ContainerInterface instance
-     * @param string             $controller The controller name to call
-     * @param LoggerInterface    $logger     A logger instance
      */
-    public function __construct(ContainerInterface $container, $controller, $logger)
+    public function __construct(ContainerInterface $container)
     {
-        parent::__construct($controller, $logger);
-
         $this->container = $container;
     }
 
