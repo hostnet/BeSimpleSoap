@@ -1,10 +1,11 @@
 <?php
 
 namespace BeSimple\SoapClient\Tests\ServerInterop;
+use PHPUnit\Framework\TestCase as PhpUnitTestCase;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends PhpUnitTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         if (version_compare(PHP_VERSION, '5.3.0', '=')) {
             $this->markTestSkipped(

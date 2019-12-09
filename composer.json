@@ -20,12 +20,12 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.2",
         "ext-soap": "*",
         "ext-curl": "*",
         "ass/xmlsecurity": "~1.0",
-        "symfony/framework-bundle": "~3.4|~4.0",
-        "symfony/twig-bundle": "~3.4|~4.0",
+        "symfony/framework-bundle": "~4.0|~5.0",
+        "symfony/twig-bundle": "~4.0|~5.0",
         "zendframework/zend-mime": "2.1.*"
     },
     "replace": {
@@ -36,10 +36,10 @@
         "besimple/soap-wsdl":   "self.version"
     },
     "require-dev": {
-        "mikey179/vfsStream": "~1.6.5",
-        "symfony/filesystem": "~2.3",
-        "symfony/process": "~2.3",
-        "phpunit/phpunit": "^5.7"
+        "mikey179/vfsstream": "~1.6.5",
+        "symfony/filesystem": "~4.0|~5.0",
+        "symfony/process": "~4.0|~5.0",
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "psr-0": { "BeSimple\\": "src/" }

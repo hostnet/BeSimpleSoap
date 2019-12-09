@@ -45,8 +45,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('be_simple_soap');
+        $treeBuilder = new TreeBuilder('be_simple_soap');
+        $rootNode = $treeBuilder->getRootNode();
 
         $this->addCacheSection($rootNode);
         $this->addClientSection($rootNode);
