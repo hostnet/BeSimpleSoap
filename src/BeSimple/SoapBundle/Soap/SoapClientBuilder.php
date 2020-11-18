@@ -30,7 +30,7 @@ class SoapClientBuilder extends BaseSoapClientBuilder
         }
 
         if (isset($options['timeout'])) {
-            $this->withTimeout($options['timeout'], $options['connection_timeout'] ?? $options['timeout']);
+            $this->withTimeout($options['timeout'], $options['connect_timeout'] ?? $options['timeout']);
         }
 
         if ($classmap) {
@@ -59,7 +59,7 @@ class SoapClientBuilder extends BaseSoapClientBuilder
             'exceptions'         => true,
             'user_agent'         => 'BeSimpleSoap',
             'timeout'            => null,
-            'connection_timeout' => null,
+            'connect_timeout' => null,
         );
 
         // check option names and live merge, if errors are encountered Exception will be thrown

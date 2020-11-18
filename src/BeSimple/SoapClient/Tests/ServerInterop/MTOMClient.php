@@ -18,7 +18,7 @@ $options = array(
         'base64Binary'      => 'BeSimple\SoapClient\Tests\ServerInterop\Fixtures\base64Binary',
         'AttachmentRequest' => 'BeSimple\SoapClient\Tests\ServerInterop\Fixtures\AttachmentRequest',
     ),
-    'connection_timeout' => 1,
+    'connect_timeout' => 1,
 );
 
 $sc = new BeSimpleSoapClient('Fixtures/MTOM.wsdl', $options);

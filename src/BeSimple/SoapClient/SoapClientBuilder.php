@@ -172,16 +172,16 @@ class SoapClientBuilder extends AbstractSoapBuilder
 
     /**
      * @param int $timeout
-     * @param int|null $connection_timeout
+     * @param int|null $connect_timeout
      *
      * @return \BeSimple\SoapClient\SoapClientBuilder
      */
-    public function withTimeout(int $timeout, ?int $connection_timeout = null)
+    public function withTimeout(int $timeout, ?int $connect_timeout = null)
     {
         $this->soapOptions['timeout'] = $timeout;
 
-        if (null !== $connection_timeout) {
-            $this->soapOptions['connection_timeout'] = $connection_timeout;
+        if (null !== $connect_timeout) {
+            $this->soapOptions['connect_timeout'] = $connect_timeout;
         }
 
         return $this;
