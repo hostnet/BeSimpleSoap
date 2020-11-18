@@ -95,6 +95,8 @@ class Configuration implements ConfigurationInterface
                             ->children()
                                 ->scalarNode('wsdl')->isRequired()->end()
                                 ->scalarNode('user_agent')->end()
+                                ->scalarNode('timeout')->end()
+                                ->scalarNode('connection_timeout')->end()
                                 ->scalarNode('cache_type')
                                     ->validate()
                                         ->ifNotInArray($this->cacheTypes)

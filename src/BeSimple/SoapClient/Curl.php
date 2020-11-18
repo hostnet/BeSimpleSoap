@@ -77,6 +77,9 @@ class Curl
         if (isset($options['compression']) && !($options['compression'] & SOAP_COMPRESSION_ACCEPT)) {
             curl_setopt($this->ch, CURLOPT_ENCODING, 'identity');
         }
+        if (isset($options['timeout'])) {
+            curl_setopt($this->ch, CURLOPT_TIMEOUT, $options['timeout']);
+        }
         if (isset($options['connection_timeout'])) {
             curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, $options['connection_timeout']);
         }
