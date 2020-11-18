@@ -54,11 +54,11 @@ class SoapClientBuilder extends BaseSoapClientBuilder
     protected function checkOptions(array $options)
     {
         $checkOptions = array(
-            'debug'              => false,
-            'cache_type'         => null,
-            'exceptions'         => true,
-            'user_agent'         => 'BeSimpleSoap',
-            'timeout'            => null,
+            'debug'           => false,
+            'cache_type'      => null,
+            'exceptions'      => true,
+            'user_agent'      => 'BeSimpleSoap',
+            'timeout'         => null,
             'connect_timeout' => null,
         );
 
